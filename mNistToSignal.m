@@ -8,7 +8,7 @@ output.labels = input.labels;
 
 [h, w, numIms] = size(input.images);
 
-ims = double(reshape(input.images, h * w, numIms))'; %each row is a flattened image
+ims = double(reshape(input.images, h * w, numIms)/255.0)'; %each row is a flattened image
 
 if usePyramid
     pyramidSize = 4;
