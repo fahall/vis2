@@ -1,22 +1,21 @@
-function [hist ] = oriPyramid( image )
-%UNTITLED3 Summary of this function goes here
-%   Detailed explanation goes here
+function [hists ] = oriPyramid( image )
 
 [imh, imw] = size(image);
 ori = compute_ori(image);
+[orih, oriw] = size(ori);
 
-hist = [];
-
+hists = [];
 for offset = [4,7]
-    for y = 1:offset:imh - offset
-        for x = 1:offset:imw - offset
-            window = ori(y:y+offset, x:x+offset);
-            [theseHists, ~] = histc(window, 9);
-            hist = horzcat(hist, theseHists );
+    for y = 1: offset: orih - offset
+        for x = 1: offset: oriw - offset
+            window = ori(y: y + offset - 1, x: x + offset - 1);
+            binranges = linspace(-180, 180, 9);
+            theseHists = histc(window(:), binranges);
+            %hists = vertcat(hists, theseHists/sum(theseHists));
+            hists = vertcat(hists, theseHists);
         end
     end
 end
-
-
+hists = hists';
 
 end

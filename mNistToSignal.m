@@ -8,30 +8,34 @@ output.labels = input.labels;
 
 [h, w, numIms] = size(input.images);
 
-ims = double(reshape(input.images, h * w, numIms)/255.0)'; %each row is a flattened image
+rawIms = double(input.images/255.0);
+flatIms = reshape(rawIms, h * w, numIms)'; %each row is a flattened image
 
 if usePyramid
-    pyramidSize = 4;
-    for i = 1:2
-        pyr = spatialPyramid(input.images(:,:,1), pyramidSize);
+    for pyramidSize = [4, 7]
+        pyr = spatialPyramid(rawIms(:,:,1), pyramidSize);
 
         for j = 2:numIms
-            pyr = vertcat(pyr, spatialPyramid(input.images(:,:,j), pyramidSize));
+            pyr = vertcat(pyr, spatialPyramid(rawIms(:,:,j), pyramidSize));
         end
 
-        ims = horzcat(ims, pyr);
-        pyramidSize = 7; %set to 7 for second round. 
+        flatIms = horzcat(flatIms, pyr);
     end
 end
 
+
 if usePHOG
-    
+    ori = oriPyramid(rawIms(:,:,1));
+    for i = 2:numIms
+        ori = vertcat(ori, oriPyramid(rawIms(:,:,i)));
+    end
+    flatIms = horzcat(flatIms, ori);  
     
 end
 
-ims = sparse(ims);
+flatIms = sparse(flatIms);
 
-output.images = ims;
+output.images = flatIms;
 
 
 end
