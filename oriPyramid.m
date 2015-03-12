@@ -1,4 +1,4 @@
-function [hists ] = oriPyramid( image )
+function [hists ] = oriPyramid( image, normOris )
 
 [imh, imw] = size(image);
 ori = compute_ori(image);
@@ -11,8 +11,11 @@ for offset = [4,7]
             window = ori(y: y + offset - 1, x: x + offset - 1);
             binranges = linspace(-180, 180, 9);
             theseHists = histc(window(:), binranges);
-            %hists = vertcat(hists, theseHists/sum(theseHists));
-            hists = vertcat(hists, theseHists);
+            if normOris
+                hists = vertcat(hists, theseHists/sum(theseHists));
+            else
+                hists = vertcat(hists, theseHists);
+            end
         end
     end
 end

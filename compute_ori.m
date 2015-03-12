@@ -18,7 +18,10 @@ function [ ori ] = compute_ori( im )
 % y_grad = imfilter(im, [[0, -1, 0]; [ 0, 0, 0]; [0, 1, 0]]);
 
 % 3x3 gaussian derivative filter gradients
-
+G1 = fspecial('gauss', 3, 0.5);
+[x_gfilter, y_gfilter] = gradient(G1);
+x_grad = imfilter(im, x_gfilter);
+y_grad = imfilter(im, y_gfilter);
 
 ori = atan2d(y_grad,x_grad);
 ori(isnan(ori)) = 0;

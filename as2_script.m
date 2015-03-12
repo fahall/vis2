@@ -3,18 +3,19 @@ tst = load('test.mat');
 trainRaw = trn.train;
 testRaw = tst.test;
 
-usePyramid = 1;
 usePHOG = 1;
+usePyramid = 0;
+normOris = 1;
 hyper = 0;
 
 disp('formatting test data...')
-test_signal = mNistToSignal(testRaw, usePyramid, usePHOG);
+test_signal = mNistToSignal(testRaw, usePyramid, usePHOG, normOris);
 
 acc_output = cell(length(-hyper:hyper));
 
 for i = 1:length(trainRaw)
     disp('formatting training data...')
-    output = mNistToSignal(trainRaw{i}, usePyramid, usePHOG);
+    output = mNistToSignal(trainRaw{i}, usePyramid, usePHOG, normOris);
     
     % duplicate labels
     disp('training...')
