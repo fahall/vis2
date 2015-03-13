@@ -1,0 +1,12 @@
+Final Project Ideas.
+
+1. In movies, there is a specific grammar defining how a movie should be shot and edited. This grammar is enumerated in 'The Grammar of the Film Language' and 'The Grammar of the Shot'. The components of a frame or shot include how close the actors are to the camera (e.g. close up or long shot), where the actors are positioned within the shot (e.g. left third of the frame or middle of the frame), and how those shots are edited together in sequences to create effective scenes. We propose a computer vision system that separates movies into their component frames and then classifies those frames based on their compositional characteristics. This system could then be used to study the visual styles and patterns of various movies. 
+
+Components Needed:
+1. A Face Detector
+2. A Shot Detector
+3. A classification taxonomy
+4. A framework to classify frames based on the aforementioned taxonomy. 
+
+
+2. Frequently in films where two characters have a dialogue, the shots are composed so that the speaking character's face is visible on one side of the frame. The non-speaking character is often visible in the other side of the frame shot from over the shoulder or behind. In my research into film style, we have determined a need for the development of a 'back-of-head' detector. This detector would function similar to how a modern face detector works, but would be trained to identify backs of heads. This problem may be inherently hard due to the lack of consistent high frequency subfeatures and the high variance of the class itself (e.g. long hair, hoods, or hats). Our research would experiment with different learning tools from Computer Vision, such as SVMs and Convolutional Neural Networks to create an effective 'back-of-head-detector'.  
