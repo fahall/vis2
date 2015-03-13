@@ -81,7 +81,10 @@
 }
 
 \newcommand{\problemAnswer}[1]{ % Defines the problem answer command with the content as the only argument
-\noindent\framebox[\columnwidth][c]{\begin{minipage}{0.98\columnwidth}#1\end{minipage}} % Makes the box around the problem answer and puts the content inside
+%\noindent\framebox[\columnwidth][c]{\begin{minipage}{0.98\columnwidth}#1\end{minipage}} % Makes the box around the problem answer and puts the content inside
+{\bigskip
+\begin{minipage}{0.98\columnwidth}#1\end{minipage}
+\bigskip} 
 }
 
 \newcommand{\homeworkSectionName}{}
@@ -145,8 +148,9 @@
 \begin{homeworkSection}{(1.1)} % Section within problem
 \vspace{10pt}
 	
+	\emph{
 	(a) As a warm-up, use the raw pixels as features to train a linear svm. Plot the error rate vs the number of training examples.
-	\newline
+	}
 	
 	\problemAnswer{ % Answer
 	
@@ -161,8 +165,9 @@
 \begin{homeworkSection}{(1.2)} % Section within problem
 \vspace{10pt}
 
+	\emph{
 	(a) Explain briefly why adding these features should help over raw pixel values.
-	\newline
+	}
 	
 	\problemAnswer{ 
 	
@@ -170,13 +175,14 @@
 	
 	}
 	
+	\emph{
 	(b) Implement these features and use them to train a linear svm. Plot the error rate vs the number of
 	training examples. Do you get a significant boost over Q1?
 	\newline
-	
+	}
 	\problemAnswer{ 
 	
-	Here we plot the error rate vs. number of training examples for both raw pixel features alone (in Blue) and raw pixel features plus local cxc neighborhood sums with overlapping windows of size c/2 for c=4,7 (in Green). For a small number of training examples our performance is better with the additional features than for the raw pixel features alone. However, with more training examples the raw pixels surpasses the raw pixels plus the pyramid features.
+	Here we plot the error rate vs. number of training examples for both raw pixel features alone (in blue) and raw pixel features plus local cxc neighborhood sums with overlapping windows of size c/2 for c=4,7 (in green). For a small number of training examples our performance is better with the additional features than for the raw pixel features alone. However, with more training examples the raw pixels surpasses the raw pixels plus the pyramid features. Overall there does not seem to be any significant boost for the neighborhood sums.
 	
 	\begin{center}
 	\includegraphics[width=0.75\columnwidth]{pixAndPyr} % Example image
@@ -188,22 +194,23 @@
 
 \begin{homeworkSection}{(1.3)} % Section within problem
 \vspace{10pt}
-
+	\emph{
 	(a) Explain briefly why gradient orientations should help over pixel intensities : what is the gradient orientation trying to capture?
-	\newline
+	}
 	
 	\problemAnswer{ 
 	
-	ANSWER GOES HERE
+	Gradient orientations do a much better job of capturing the structure in an image since they can be thought of as both edge detectors and (as histograms) somewhat coarse shape detectors. Pixel intensities on the other hand are blind to structure and therefore provide less useful information for comparison.
 	
 	}
 	
-	(b) Implement these features and use them to train a linear SVM. For computing the gradient, use the tap filter:[?1 0 1]. Use 9 orientation bins. Use the same cell sizes (4 and 7) as in Q2. Plot the error rate vs the number of training examples. Do you get a significant boost over Q2?
-	\newline
+	\emph{
+	(b) Implement these features and use them to train a linear SVM. For computing the gradient, use the tap filter: [1 0 1]. Use 9 orientation bins. Use the same cell sizes (4 and 7) as in Q2. Plot the error rate vs the number of training examples. Do you get a significant boost over Q2?
+	}
 	
 	\problemAnswer{ 
 	
-	ANSWER GOES HERE
+	Yes, using the tap filter and overlapping multi-scale histograms of gradients (instead of the raw pixels), we achieve a much larger boost in performance at all numbers of training points.
 	
 	\begin{center}
 	\includegraphics[width=0.75\columnwidth]{normedTap} % Example image
@@ -211,12 +218,13 @@
 	
 	}
 	
+	\emph{
 	(c) Does the performance drop if you don’t normalize the histograms before concatenating them? Why or why not? Plot error rate vs the number of training examples.
-	\newline
+	}
 	
 	\problemAnswer{ 
 	
-	ANSWER GOES HERE
+	The performance is only slightly lower for non-normalized histograms. This is because EXPLANATION GOES HERE.
 	
 	\begin{center}
 	\includegraphics[width=0.75\columnwidth]{nonNormedTap} % Example image
@@ -224,12 +232,13 @@
 	
 	}
 	
+	\emph{
 	(d) How does performance change if you replace the tap filter with a Gaussian derivative filter?
-	\newline
+	}
 	
 	\problemAnswer{ 
 	
-	ANSWER GOES HERE
+	The Gaussian derivative filter performs slightly worse than the tap filter. This is most likely because the gaussian is actually blurring the edges, which is decreasing the useful signal for comparison.
 	
 	\begin{center}
 	\includegraphics[width=0.75\columnwidth]{normedGauss} % Example image
@@ -237,25 +246,26 @@
 	
 	}
 	
+	\emph{
 	(e) Explain how you choose the hyper-parameter in linear SVM and why.
-	\newline
+	}
 	
 	\problemAnswer{ 
 	
-	ANSWER GOES HERE
+	The Liblinear SVM guidelines note that the hyper-parameter, C, does not strongly affect the output of the SVM, and they suggest starting at C=1 and increasing C until performance improvement becomes negligible. We followed this procedure and found that C= ??? seemed like an appropriate stopping point.
 	
 	}
 \end{homeworkSection}
 	
 \begin{homeworkSection}{(1.4)} % Section within problem
 \vspace{10pt}
-	
+	\emph{
 	(a) Visualize the images on which you go wrong. Do the errors your classifier makes seem reasonable to you? How many of these images do you as a human have a hard time recognizing?
-	\newline
+	}
 	
 	\problemAnswer{ 
 	
-	ANSWER GOES HERE
+	ANSWER GOES HERE + FIGURE
 	
 	}
 
@@ -270,46 +280,53 @@
 \begin{homeworkProblem}
 \begin{homeworkSection}{(2.1)} % Section within problem
 \vspace{10pt}
-
-	(1) Draw a schematic of the neural network architecture described above. Clearly label all the layers of the network (including the non-linearity).
-	\newline
+	\emph{
+	(1) Draw a schematic of the neural network architecture described above. Clearly label all the layers of the network (including the non-linearity).}
 	
 	\problemAnswer{ % Answer
-	
 	ANSWER GOES HERE (+FIGURE)
 	
 	}
 	
+	\emph{
 	(2) Train this network for digit classification. Report the accuracy on the test set. How many parameters does this network have?
+	}
 	
 	\problemAnswer{ % Answer
 	
-	The accuracy for the two layer fully connected network is ???.
+	The accuracy for the two layer fully connected network is 93.84\%.
 	The network has 20*784 parameters for ip1 and 500*20 parameters for ip2, for a total of 25680 parameters.
 	
 	}
 	
+	\emph{
 	(3) Use three hidden layers of 20, 50 and 500 units respectively. Report the accuracy on the test set. How many parameters does this network have?
+	}
 	
 	\problemAnswer{ % Answer
 	
-	The accuracy for the three layer fully connected network is ???.
+	The accuracy for the three layer fully connected network is 95.02\%.
 	The network has 20*784 parameters for ip1, plus 50*20 parameters for ip2, and 500*20 parameters for ip3, for a total of 25680000 parameters.
 	
 	}
 	
+	\emph{
 	(4) Compare the performance of both these networks. Why is the performance greater/lower or the same?
+	}
 	
 	\problemAnswer{ % Answer
 	
 	ANSWER GOES HERE
 	
 	}
+	
+	\emph{
 	(5) Change the non-linearity to Sigmoid and re-train the network. Do you observe any differences? If the depth of the network is increased - what effect would the Sigmoid non-linearity have on the magnitude of the gradients? Is this desirable? Is the behavior of ReLu units different?
+	}
 	
 	\problemAnswer{ % Answer
 	
-	ANSWER GOES HERE
+	The accuracy for the Sigmoid version of the three-layer network is 92.06\%. This is somewhat higher. EXPLANATION GOES HERE.
 	
 	}
 
@@ -317,9 +334,9 @@
 
 \begin{homeworkSection}{(2.2)} % Section within problem
 \vspace{10pt}
-
+	\emph{
 	(1) Report the performance of the LeNet architecture. How many parameters does this network have? Train the LeNet using only 10K examples and compare the performance with the SVM classifier you trained in the first part of the homework.
-	\newline
+	}
 	
 	\problemAnswer{ % Answer
 	
@@ -327,43 +344,60 @@
 	
 	}
 	
+	\emph{
 	(2) Both LeNet and FC network have 20, 50, 500 units in the three hidden layers. Considering this, compare the performance of LeNet with the Fully connected(FC) network with three hidden layers.
+	}
 	
 	\problemAnswer{ % Answer
 	
-	The LeNet network has a performance of 97.36\% compared to ??? for the three-layer FC network.
+	The LeNet network has a performance of 97.36\% compared to 95.02\% for the three-layer FC network.
 	
 	}
 	
+	\emph{
 	(3) Now, reduce the number of units in the third hidden layer of the LeNet to 32. Lets call this LeNet2. Compare the performance with the fully connected network. Why is the performance greater/lower or the same?
+	}
 	
 	\problemAnswer{ % Answer
 	
-	The performance of LeNet2 is 98.58\% compared to ??? for the three-layer FC network. EXPLANATION GOES HERE.
-	
+	The performance of LeNet2 is 98.58\% compared to 95.02\% for the three-layer FC network.	
 	}
 	
+	\emph{
 	(4) Experiment with the kernel sizes in LeNet2. Try kernel sizes of 3 and 7. What do you find?
+	}
 	
 	\problemAnswer{ % Answer
 	
-	The performance of LeNet2 is 98.38\% and 98.53\% for kernel sizes of 3 and 7, respectively.
+	The performance of LeNet2 is 98.38\% and 98.53\% for kernel sizes of 3 and 7, respectively. At kernel sizes of 7 and 3 we find that the performance of LeNet2 decreases when compared with a kernel size of 5. It seems plausible that a kernel size of 5 works well for images of dimension 28x28 while a kernel of size 7 is too large. A kernel of size 3 may simply be too small to retrieve visually discriminative information. 
 	
 	}
+	
+	\emph{
 	(5) Visualize the first layer filters of the original LeNet network. What do you find? Based on this visualization - can you comment on what computation first layer is performing?
+	}
 	
 	\problemAnswer{ % Answer
 	
-	Here is a visualization of the first layer filters (note: image size is very small).
+	Here is a visualization of the first layer filters (note: actual image size is very small).
 			
-%	\begin{center}
-%	\includegraphics[width=0.75\columnwidth]{normedGauss} % Example image
-%	\end{center}
+	\begin{center}
+	\includegraphics[width=0.1\columnwidth]{filter_vis} % Example image
+	\end{center}
+	
+	Here is an enlarged version.
+			
+	\begin{center}
+	\includegraphics[width=0.75\columnwidth]{filter_vis_large} % Example image
+	\end{center}
 	
 	FURTHER EXPLANATION GOES HERE
 	
 	}
+	
+	\emph{
 	(6) Based on your results, list the pros and cons of using a FC network in comparison to the ConvNet. Is the ConvNet more scalable to larger images? If yes, why and if no, why not?
+	}
 	
 	\problemAnswer{ % Answer
 	
