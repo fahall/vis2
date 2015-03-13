@@ -6,7 +6,7 @@ testRaw = tst.test;
 usePHOG = 1;
 usePyramid = 0;
 normOris = 1;
-hyper = 1;
+hyper = 10;
 
 disp('formatting test data...')
 test_signal = mNistToSignal(testRaw, usePyramid, usePHOG, normOris);

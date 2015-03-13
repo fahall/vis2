@@ -171,7 +171,7 @@
 	
 	\problemAnswer{ 
 	
-	The local sums provide more information about larger neighborhoods in the image, which equates to more relational information. The overlapping windows provide some translational invariance.
+	The local neighborhood sums indicate the general statistics for larger areas compared to individual pixels, and these broader descriptions should give a boost to coarse discrimination between numbers. For example a 9 and an 8 should differ mostly on the general statistics of the neighborhood around the open section of the 9. The multi scale overlapping windows also provide some scale and translational invariance.
 	
 	}
 	
@@ -182,7 +182,7 @@
 	}
 	\problemAnswer{ 
 	
-	Here we plot the error rate vs. number of training examples for both raw pixel features alone (in blue) and raw pixel features plus local cxc neighborhood sums with overlapping windows of size c/2 for c=4,7 (in green). For a small number of training examples our performance is better with the additional features than for the raw pixel features alone. However, with more training examples the raw pixels surpasses the raw pixels plus the pyramid features. Overall there does not seem to be any significant boost for the neighborhood sums.
+	Here we plot the error rate vs. number of training examples for both raw pixel features alone (in blue) and raw pixel features plus local c x c neighborhood sums with overlapping windows of size c / 2 for c = 4, 7 (in green). For a small number of training examples our performance is better with the additional features than for the raw pixel features alone. However, with 10K training examples the raw pixels surpasses the raw pixels plus the pyramid features. This might be because with more examples you actually include more strange numbers that do not fit the canonical shape, so the local neighborhoods might actually mis-guide the classifier. Overall there does not seem to be any significant boost for the neighborhood sums.
 	
 	\begin{center}
 	\includegraphics[width=0.75\columnwidth]{pixAndPyr} % Example image
@@ -224,7 +224,7 @@
 	
 	\problemAnswer{ 
 	
-	The performance is only slightly lower for non-normalized histograms. This is because EXPLANATION GOES HERE.
+	The performance is slightly lower for non-normalized histograms. This might be because more subtle edges (which would otherwise be down weighted without normalization) contribute more to the classification and help to distinguish edge cases.
 	
 	\begin{center}
 	\includegraphics[width=0.75\columnwidth]{nonNormedTap} % Example image
@@ -252,7 +252,7 @@
 	
 	\problemAnswer{ 
 	
-	The Liblinear SVM guidelines note that the hyper-parameter, C, does not strongly affect the output of the SVM, and they suggest starting at C=1 and increasing C until performance improvement becomes negligible. We followed this procedure and found that C= ??? seemed like an appropriate stopping point.
+	The Liblinear SVM guidelines note that the hyper-parameter, C, does not strongly affect the output of the SVM, and they suggest starting at C=1 and increasing C until performance improvement becomes negligible. We followed this procedure and found that performance strictly decreased after C=1, which is consistent with the results shown in their paper.
 	
 	}
 \end{homeworkSection}
@@ -284,7 +284,10 @@
 	(1) Draw a schematic of the neural network architecture described above. Clearly label all the layers of the network (including the non-linearity).}
 	
 	\problemAnswer{ % Answer
-	ANSWER GOES HERE (+FIGURE)
+	
+	\begin{center}
+	\includegraphics[width=0.75\columnwidth]{fc_2layer_diagram} % Example image
+	\end{center}
 	
 	}
 	
@@ -360,7 +363,7 @@
 	
 	\problemAnswer{ % Answer
 	
-	The performance of LeNet2 is 98.58\% compared to 95.02\% for the three-layer FC network.	
+	The performance of LeNet2 is 98.58\% compared to 95.02\% for the three-layer FC network. EXPLANATION GOES HERE.
 	}
 	
 	\emph{
