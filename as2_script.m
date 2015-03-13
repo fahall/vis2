@@ -3,9 +3,9 @@ tst = load('test.mat');
 trainRaw = trn.train;
 testRaw = tst.test;
 
-usePHOG = 1;
+usePHOG = 0;
 usePyramid = 0;
-normOris = 1;
+normOris = 0;
 hyper = 0;
 
 disp('formatting test data...')

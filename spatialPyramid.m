@@ -3,7 +3,7 @@ function [pyrVals ] = spatialPyramid( image, pyramidSize )
 %   Detailed explanation goes here
 
 filter = ones(pyramidSize);
-values = conv2(double(image), filter, 'Valid');
+values = conv2(image, filter, 'Valid');
 
 
 
